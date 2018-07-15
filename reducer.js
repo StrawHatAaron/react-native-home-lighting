@@ -9,8 +9,7 @@ export default function reducer(state = { repos: [] }, action) {
     case GET_REPOS_SUCCESS:
       return { ...state, loading: false, repos: action.payload.data };
     case GET_REPOS_FAIL:
-      return {
-        ...state,
+      return { ...state,
         loading: false,
         error: 'Error while fetching repositories'
       };

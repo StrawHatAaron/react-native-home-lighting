@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableHighlight, Image } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider, connect } from 'react-redux';
 import axios from 'axios';
@@ -20,17 +20,8 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          <TouchableHighlight
-            style={{marginRight:10}}>
-            <Image
-              style={{width:35, height:35}}
-              source={require('./icons/blue.png')}
-              />
-          </TouchableHighlight>
-          
+        <View style={styles.container}>          
             <RepoList />
-          
         </View>
       </Provider>
     );

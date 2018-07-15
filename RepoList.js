@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, StyleSheet, Button } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Button, TouchableHighlight, Image } from 'react-native';
 import { connect } from 'react-redux';
 
 import { listRepos } from './reducer';
@@ -9,11 +9,27 @@ class RepoList extends Component {
   componentDidMount() {
     this.props.listRepos('strawhataaron');
   }
+
+_onPressAdd(){
+    alert("I need work");
+}
+
   renderItem = ({ item }) => (
     <View style={styles.item}>
       <Text>{item.name}</Text>
+        <TouchableHighlight
+            style={{marginRight:7,
+                    alignSelf: 'flex-end'
+                 }}
+            onPress={this._onPressAdd}>
+            <Image
+              style={{width:35, height:35}}
+              source={require('./icons/blue.png')}
+            />
+        </TouchableHighlight>
     </View>
   );
+
   render() {
     const { repos } = this.props;
     return (
@@ -26,6 +42,7 @@ class RepoList extends Component {
   }
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1
@@ -33,7 +50,7 @@ const styles = StyleSheet.create({
   item: {
     padding: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc'
+    borderBottomColor: '#ccc',
   }
 });
 
