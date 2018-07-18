@@ -6,21 +6,27 @@ import { listRepos } from './reducer';
 
 
 class RepoList extends Component {
+
   componentDidMount() {
     this.props.listRepos('strawhataaron');
   }
 
-_onPressAdd(){
-    alert("I need work");
-}
+  _onPressAdd(){
+    return fetch('https://facebook.github.io/react-native/movies.json')
+    .then((response) => response.json())
+    .then((responseJson) => {
+      alert(responseJson.title);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
 
-  renderItem = ({ item }) => (
+  flatListCell = ({ item }) => (
     <View style={styles.item}>
       <Text>{item.name}</Text>
         <TouchableHighlight
-            style={{marginRight:7,
-                    alignSelf: 'flex-end'
-                 }}
+            style={styles.touch}
             onPress={this._onPressAdd}>
             <Image
               style={{width:35, height:35}}
@@ -36,7 +42,7 @@ _onPressAdd(){
       <FlatList
         styles={styles.container}
         data={repos}
-        renderItem={this.renderItem}
+        renderItem={this.flatListCell}
       />
     );
   }
@@ -51,6 +57,10 @@ const styles = StyleSheet.create({
     padding: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
+  }, 
+  touch: {
+    marginRight:7,
+    alignSelf: 'flex-end'
   }
 });
 
