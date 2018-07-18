@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, StyleSheet, Button, TouchableHighlight, Image } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableHighlight, Image } from 'react-native';
 import { connect } from 'react-redux';
+
 
 import { listRepos } from './reducer';
 
@@ -14,7 +15,7 @@ _onPressAdd(){
     alert("I need work");
 }
 
-  renderItem = ({ item }) => (
+  flatListCell = ({ item }) => (
     <View style={styles.item}>
       <Text>{item.name}</Text>
         <TouchableHighlight
@@ -36,7 +37,7 @@ _onPressAdd(){
       <FlatList
         styles={styles.container}
         data={repos}
-        renderItem={this.renderItem}
+        renderItem={this.flatListCell}
       />
     );
   }
